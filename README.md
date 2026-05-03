@@ -1,16 +1,19 @@
-## Hi there 👋
+### Hi, I'm Gabriel 👋
 
-<!--
-**Caezarr/Caezarr** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+AI Engineer at **Wonka AI** (Brussels). I ship product in TypeScript and Python, build third-party integrations, and care about how things feel.
 
-Here are some ideas to get you started:
+**Currently:**
+- 🛠 Building features and integrations at Wonka AI (1000+ users)
+- 🚀 [QueryRouter++](https://github.com/Caezarr/queryrouter-plus-plus) — 
+  multi-objective LLM routing, in production
+- 🧰 [Career Ops](https://github.com/Caezarr/career-ops) — 
+  TypeScript orchestration over Greenhouse / Ashby / Lever APIs
+- 🎓 Engineering thesis (ENSAM): formalizing LLM routing as a 
+  scoring function, validated on 86k+ production queries
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+**Stack:** TypeScript · Python · Next.js · Node.js · MCP · OpenAI / Anthropic APIs
+
+**Talk to me about:** agent infrastructure, integration design, 
+LLM routing, dev tools.
+
+📫 [Email](gabriel.rance@ensam.eu) · [LinkedIn](https://linkedin.com/in/gabriel-rance-ensam)

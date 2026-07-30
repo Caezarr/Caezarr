@@ -24,6 +24,12 @@
 | production queries studied | users reached at Wonka | OpenAI Hackathon |
 | LLM routing research | shipped AI products | built under pressure |
 
+<div align="center">
+
+<img src="./contributions.svg" width="620" alt="GitHub contributions during the last 365 days" />
+
+</div>
+
 ## In production
 
 ### Wonka AI

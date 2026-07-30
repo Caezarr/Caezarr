@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a self-hosted contribution graph for the profile README."""
+"""Generate the profile README's self-hosted contribution sparkline."""
 
 from __future__ import annotations
 
@@ -8,20 +8,15 @@ import json
 import os
 import sys
 import urllib.request
-from datetime import date, datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
 API = "https://api.github.com/graphql"
-WIDTH = 620
-HEIGHT = 194
-LEFT = 34
-TOP = 104
-CELL_X = 10.7
-CELL_Y = 11.2
-RAMP = ("·", ":", "+", "#", "@")
-MONTHS = ("jan", "feb", "mar", "apr", "may", "jun",
-          "jul", "aug", "sep", "oct", "nov", "dec")
+WIDTH = 760
+HEIGHT = 158
+PLOT_LEFT = 77
+PLOT_RIGHT = 695
 
 QUERY = """
 query($login: String!, $from: DateTime!, $to: DateTime!) {
@@ -33,7 +28,6 @@ query($login: String!, $from: DateTime!, $to: DateTime!) {
           contributionDays {
             contributionCount
             date
-            weekday
           }
         }
       }
@@ -79,45 +73,16 @@ def fetch_calendar(login: str, token: str) -> dict:
     return user["contributionsCollection"]["contributionCalendar"]
 
 
-def flatten_days(weeks: list[dict]) -> list[dict]:
-    return [day for week in weeks for day in week["contributionDays"]]
-
-
-def streaks(days: list[dict]) -> tuple[int, int]:
-    longest = 0
-    running = 0
-    for day in days:
-        if day["contributionCount"] > 0:
-            running += 1
-            longest = max(longest, running)
-        else:
-            running = 0
-
-    # Today may still be empty without ending the current streak.
-    relevant = days[:-1] if days and days[-1]["contributionCount"] == 0 else days
-    current = 0
-    for day in reversed(relevant):
-        if day["contributionCount"] == 0:
-            break
-        current += 1
-    return current, longest
-
-
-def intensity(value: int) -> int:
-    if value <= 0:
-        return 0
-    if value <= 2:
-        return 1
-    if value <= 5:
-        return 2
-    if value <= 9:
-        return 3
-    return 4
-
-
-def label(x: float, y: float, text: str, css: str, size: int,
-          anchor: str = "start", weight: int = 400) -> str:
-    safe = html.escape(str(text))
+def text(
+    x: float,
+    y: float,
+    value: object,
+    css: str,
+    size: int,
+    anchor: str = "start",
+    weight: int = 400,
+) -> str:
+    safe = html.escape(str(value))
     return (
         f'<text x="{x:.1f}" y="{y:.1f}" class="{css}" '
         f'font-size="{size}" font-weight="{weight}" '
@@ -127,10 +92,35 @@ def label(x: float, y: float, text: str, css: str, size: int,
 
 def make_svg(calendar: dict) -> str:
     weeks = calendar["weeks"]
-    days = flatten_days(weeks)
+    weekly = [
+        sum(day["contributionCount"] for day in week["contributionDays"])
+        for week in weeks
+    ]
+    days = [day for week in weeks for day in week["contributionDays"]]
     total = calendar["totalContributions"]
     active = sum(day["contributionCount"] > 0 for day in days)
-    current, longest = streaks(days)
+    best_week = max(weekly, default=0)
+
+    base_y = 148
+    top_y = 99
+    peak = max(weekly, default=1) or 1
+    step = (PLOT_RIGHT - PLOT_LEFT) / max(len(weekly) - 1, 1)
+    points = [
+        (PLOT_LEFT + index * step, base_y - (value / peak) * (base_y - top_y))
+        for index, value in enumerate(weekly)
+    ]
+    if not points:
+        points = [
+            (float(PLOT_LEFT), float(base_y)),
+            (float(PLOT_RIGHT), float(base_y)),
+        ]
+
+    line_path = "M" + "L".join(f"{x:.1f} {y:.1f}" for x, y in points)
+    area_path = (
+        f"M{points[0][0]:.1f} {base_y:.1f}"
+        + "".join(f"L{x:.1f} {y:.1f}" for x, y in points)
+        + f"L{points[-1][0]:.1f} {base_y:.1f}Z"
+    )
 
     parts = [
         (
@@ -140,77 +130,39 @@ def make_svg(calendar: dict) -> str:
             'font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'
             '&apos;Liberation Mono&apos;,monospace">'
         ),
-        "<title id=\"title\">Gabriel Rance GitHub contributions</title>",
+        "<title id=\"title\">Gabriel Rance GitHub contribution activity</title>",
         (
             f'<desc id="desc">{total} contributions across {active} active '
-            f'days during the last year.</desc>'
+            f'days during the last year; best week: {best_week}.</desc>'
         ),
         (
             "<style>"
-            ".strong{fill:#24292f}.ink{fill:#57606a}.muted{fill:#8c959f}"
-            ".rule{stroke:#d0d7de}.l0{fill:#d8dee4}.l1{fill:#9ba4ae}"
-            ".l2{fill:#6e7781}.l3{fill:#424a53}.l4{fill:#1f2328}"
+            ".strong{fill:#424a53}.ink{fill:#6e7681}.muted{fill:#8c959f}"
+            ".line{fill:none;stroke:#6e7681}.area{fill:#6e7681;opacity:.13}"
+            ".dot{fill:#424a53;stroke:#fff}"
             "@media(prefers-color-scheme:dark){"
-            ".strong{fill:#f0f6fc}.ink{fill:#b1bac4}.muted{fill:#8b949e}"
-            ".rule{stroke:#30363d}.l0{fill:#30363d}.l1{fill:#57606a}"
-            ".l2{fill:#8b949e}.l3{fill:#c9d1d9}.l4{fill:#f0f6fc}}"
+            ".strong{fill:#f0f6fc}.ink{fill:#c9d1d9}.muted{fill:#8b949e}"
+            ".line{stroke:#c9d1d9}.area{fill:#c9d1d9;opacity:.16}"
+            ".dot{fill:#f0f6fc;stroke:#0d1117}}"
             "</style>"
         ),
-        label(0, 16, "CONTRIBUTIONS / LAST 365 DAYS", "muted", 9),
-        label(0, 61, str(total), "strong", 42, weight=600),
-        label(0, 80, "contributions", "muted", 11),
-        label(255, 49, str(active), "strong", 20, anchor="middle", weight=600),
-        label(255, 68, "active days", "muted", 10, anchor="middle"),
-        label(405, 49, str(current), "strong", 20, anchor="middle", weight=600),
-        label(405, 68, "current streak", "muted", 10, anchor="middle"),
-        label(555, 49, str(longest), "strong", 20, anchor="middle", weight=600),
-        label(555, 68, "longest streak", "muted", 10, anchor="middle"),
-        '<line x1="0" y1="90.5" x2="620" y2="90.5" class="rule"/>',
+        text(PLOT_LEFT, 59, total, "strong", 52, weight=600),
+        text(PLOT_LEFT, 81, "contributions in the last year", "muted", 12),
+        text(PLOT_RIGHT, 39, active, "strong", 19, anchor="end", weight=600),
+        text(PLOT_RIGHT, 56, "active days", "muted", 11, anchor="end"),
+        text(PLOT_RIGHT, 79, best_week, "strong", 19, anchor="end", weight=600),
+        text(PLOT_RIGHT, 96, "best week", "muted", 11, anchor="end"),
+        f'<path d="{area_path}" class="area"/>',
+        (
+            f'<path d="{line_path}" class="line" stroke-width="2" '
+            'stroke-linejoin="round" stroke-linecap="round"/>'
+        ),
+        (
+            f'<circle cx="{points[-1][0] - 2:.1f}" cy="{points[-1][1]:.1f}" '
+            'r="4.5" class="dot" stroke-width="2"/>'
+        ),
+        "</svg>",
     ]
-
-    for weekday, name in ((1, "mon"), (3, "wed"), (5, "fri")):
-        y = TOP + weekday * CELL_Y + 8
-        parts.append(label(LEFT - 8, y, name, "muted", 8, anchor="end"))
-
-    last_month = None
-    last_label_x = -100.0
-    for week_index, week in enumerate(weeks):
-        if not week["contributionDays"]:
-            continue
-        x = LEFT + week_index * CELL_X
-        month = date.fromisoformat(week["contributionDays"][0]["date"]).month
-        if month != last_month and x - last_label_x >= 32:
-            parts.append(label(x, TOP - 7, MONTHS[month - 1], "muted", 8))
-            last_label_x = x
-        last_month = month
-
-        by_weekday = {
-            day["weekday"]: day for day in week["contributionDays"]
-        }
-        for weekday in range(7):
-            day = by_weekday.get(weekday)
-            if not day:
-                continue
-            y = TOP + weekday * CELL_Y
-            level = intensity(day["contributionCount"])
-            character = RAMP[level]
-            tooltip = html.escape(
-                f"{day['date']}: {day['contributionCount']} contributions"
-            )
-            parts.append(
-                f'<g><title>{tooltip}</title>'
-                f'<text x="{x:.1f}" y="{y + 8:.1f}" class="l{level}" '
-                f'font-size="10">{character}</text></g>'
-            )
-
-    parts.extend(
-        [
-            label(LEFT, 190, "quiet", "muted", 8),
-            label(WIDTH - 4, 190, "loud", "muted", 8, anchor="end"),
-            label(WIDTH / 2, 190, "·  :  +  #  @", "ink", 9, anchor="middle"),
-            "</svg>",
-        ]
-    )
     return "".join(parts)
 
 

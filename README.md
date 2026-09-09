@@ -81,6 +81,7 @@ and structured results are part of the action contract.
 |---|---|
 | **[Mirror](https://caezarr.github.io/mirror-site/)** | Local-first macOS workflow assistant that recognizes repeated work and prepares reviewable automation drafts without collecting screenshots, keystrokes, or page content. |
 | **[Boring · `Chiant`](https://github.com/Caezarr/Chiant)** | Computer-vision parking assistant combining control-vehicle detection, geofencing, and programmatic parking payment. |
+| **[Sillon](https://github.com/Caezarr/sillon)** | Operational cockpit for barbershops — appointments, clients, cut memory, and analytics. |
 | **[MCP integrations](https://github.com/Caezarr/bowimi-mcp)** | Connectors for Bowimi, Odoo, and other business software so agents can safely act inside operational workflows. |
 | **[Gauntlet](https://github.com/Caezarr/gauntlet)** | Parallel AI-agent harness for evidence-backed QA, code review, security audits, and implementation loops. |
 | **[Forge](https://github.com/Caezarr/forge)** | Local-first Life OS for morning execution, habits, training, focus, and personal progression. |

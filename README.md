@@ -43,6 +43,16 @@ agent infrastructure, and features shaped directly by customer workflows.
 
 ## Selected work
 
+### [Orbis](https://github.com/Caezarr/orbis)
+
+**Install work into your company — bounded missions on *your* stack.**
+
+Turn a repeating job into a supervised mission: test the deliverable, check
+sources and unknowns, then activate under your control. Vertical landing pages
+for hosts, creators, coaches, and more.
+
+`Next.js` · `TypeScript` · `SEO` · `CRO`
+
 ### Agent Call
 
 **A self-hosted voice-agent appliance for outbound sales teams.**
@@ -84,6 +94,7 @@ and structured results are part of the action contract.
 | **[Sillon](https://github.com/Caezarr/sillon)** | Operational cockpit for barbershops — appointments, clients, cut memory, and analytics. |
 | **[MCP integrations](https://github.com/Caezarr/bowimi-mcp)** | Connectors for Bowimi, Odoo, and other business software so agents can safely act inside operational workflows. |
 | **[Gauntlet](https://github.com/Caezarr/gauntlet)** | Parallel AI-agent harness for evidence-backed QA, code review, security audits, and implementation loops. |
+| **[Vulcan](https://github.com/Caezarr/Vulcan)** | Feature-shipping cockpit — agents, skills, and templates to turn specs into shipped product. |
 | **[Forge](https://github.com/Caezarr/forge)** | Local-first Life OS for morning execution, habits, training, focus, and personal progression. |
 | **[Career OS](https://github.com/Caezarr/career-ops)** | Native Mac workspace for application tracking, CV tailoring, interview preparation, and a live copilot. |
 

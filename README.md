@@ -112,3 +112,7 @@ See the full portfolio at **[iamgabriel.xyz](https://iamgabriel.xyz)**.
 
 Growing toward **Forward Deployed Engineering**: deep enough in the stack to
 build the system, close enough to users to know which system should be built.
+
+## Community
+
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [SUPPORT.md](SUPPORT.md) for contribution guidelines and how to reach out.

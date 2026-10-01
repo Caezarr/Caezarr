@@ -102,6 +102,10 @@ and structured results are part of the action contract.
 | **[wonka-audit](https://github.com/Caezarr/wonka-audit)** | Local AI usage audit CLI for Claude Code, Codex, Cursor and Git — track usage, costs, and patterns across your dev tools. |
 | **[Bowimi MCP](https://github.com/Caezarr/bowimi-mcp)** | MCP server for Bowimi field sales CRM — connect Claude to routes, locations, contacts, orders and operational workflows. |
 | **[Mirror](https://caezarr.github.io/mirror-site/)** | Local-first macOS workflow assistant that recognizes repeated work and prepares reviewable automation drafts without collecting screenshots, keystrokes, or page content. |
+| **[signal-studio](https://github.com/Caezarr/signal-studio)** | Signal processing and observability tooling for production systems. |
+| **[sillon](https://github.com/Caezarr/sillon)** | Workflow and productivity infrastructure for structured execution. |
+| **[focusweekly](https://github.com/Caezarr/focusweekly)** | Weekly focus planning and execution framework. |
+| **[goji-hiring-mvp](https://github.com/Caezarr/goji-hiring-mvp)** | Hiring workflow MVP for candidate pipeline management. |
 | **[Boring · `Chiant`](https://github.com/Caezarr/Chiant)** | Computer-vision parking assistant combining control-vehicle detection, geofencing, and programmatic parking payment. |
 | **[Gauntlet](https://github.com/Caezarr/gauntlet)** | Parallel AI-agent harness for evidence-backed QA, code review, security audits, and implementation loops. |
 | **[Vulcan](https://github.com/Caezarr/Vulcan)** | Feature-shipping cockpit — agents, skills, and templates to turn specs into shipped product. |

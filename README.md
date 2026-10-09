@@ -73,6 +73,16 @@ data, and costs instead of depending on a shared calling platform.
 
 `Bun` · `React` · `MCP` · `Pipecat` · `LiveKit SIP` · `Postgres`
 
+### [Kanten](https://kanten.io)
+
+**Turn niche research into ready-to-shoot video scripts.**
+
+Creator tooling that bridges research and production: identify trending topics,
+generate structured scripts, and prepare video content optimized for engagement.
+Built for creators who need repeatable workflows from insight to publish.
+
+`TypeScript` · `Next.js` · `fal` · `Creator tooling`
+
 ### [QueryRouter++](https://github.com/Caezarr/queryrouter-plus-plus)
 
 **Multi-objective routing for production LLM systems.**

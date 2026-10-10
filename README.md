@@ -113,7 +113,7 @@ and structured results are part of the action contract.
 | **[Bowimi MCP](https://github.com/Caezarr/bowimi-mcp)** | MCP server for Bowimi field sales CRM — connect Claude to routes, locations, contacts, orders and operational workflows. |
 | **[Mirror](https://caezarr.github.io/mirror-site/)** | Local-first macOS workflow assistant that recognizes repeated work and prepares reviewable automation drafts without collecting screenshots, keystrokes, or page content. |
 | **[signal-studio](https://github.com/Caezarr/signal-studio)** | Signal processing and observability tooling for production systems. |
-| **[sillon](https://github.com/Caezarr/sillon)** | Workflow and productivity infrastructure for structured execution. |
+| **[sillon](https://github.com/Caezarr/sillon)** | Operational cockpit for barbershops — appointments, clients, retention (coiffeurs-only positioning). |
 | **[focusweekly](https://github.com/Caezarr/focusweekly)** | Weekly focus planning and execution framework. |
 | **[goji-hiring-mvp](https://github.com/Caezarr/goji-hiring-mvp)** | Hiring workflow MVP for candidate pipeline management. |
 | **[Boring · `Chiant`](https://github.com/Caezarr/Chiant)** | Computer-vision parking assistant combining control-vehicle detection, geofencing, and programmatic parking payment. |

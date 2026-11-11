@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Issue with one of my projects
+    url: https://github.com/Caezarr?tab=repositories
+    about: Each project has its own repository, please open the issue there.
+  - name: Security vulnerability
+    url: https://github.com/Caezarr/Caezarr/blob/main/SECURITY.md
+    about: Do not open a public issue for security reports, follow SECURITY.md instead.

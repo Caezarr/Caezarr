@@ -99,7 +99,6 @@ customer's systems is my job end to end.
 | **[Gauntlet](https://github.com/Caezarr/gauntlet)** | Parallel agent harness on Claude Code: QA, review and security audits with evidence (logs, HTTP bodies, traces) and a validator gate before any fix lands. |
 | **[wonka-audit](https://github.com/Caezarr/wonka-audit)** | `npx` CLI that measures how teams actually use Claude Code, Codex and Cursor, local-first and privacy-safe. Used before and after AI enablement workshops. |
 | **[Bowimi MCP](https://github.com/Caezarr/bowimi-mcp)** | MCP server connecting Claude to a field-sales CRM: routes, locations, contacts, orders. |
-| **agent-secrets** | Moves plaintext secrets out of Codex, Claude Code, Claude Desktop and Cursor configs into the macOS Keychain. |
 | **[Vulcan](https://github.com/Caezarr/Vulcan)** | Agents, skills and templates to go from spec to shipped feature. |
 
 ## Why I work this way

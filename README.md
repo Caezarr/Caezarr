@@ -25,10 +25,14 @@ I sit with the customer, find the workflow worth automating, and ship the agent,
 
 ### [Fredo / Bond-OpenAI](https://github.com/Caezarr/Bond-OpenAI) · OpenAI Codex Hackathon finalist
 
-**Give a coding agent a safe, real-world action: placing a phone call.**
+**Agents can read, write and click. Then the workflow needs a phone call, and they stop.**
 
-One Codex prompt becomes a real, consented outbound call, and the structured result returns to the same task.
-The interesting part is the action contract, not the demo: classify, clarify, preview, explicit confirmation,
+Booking a restaurant, chasing an administration, confirming an appointment, asking a supplier for a quote:
+in a huge number of real workflows the blocker is not the reasoning, it is calling a person.
+Fredo removes it. One Codex prompt becomes a real, consented call, and the structured result
+returns to the same task so the agent can finish the job.
+
+What makes it shippable is the action contract: classify, clarify, preview, explicit confirmation,
 verified caller ID, strict destination allowlist, 180-second cap, idempotency keys.
 
 `MCP` · `Codex plugin` · `Twilio` · `Deepgram Voice Agent` · `Python`

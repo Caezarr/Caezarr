@@ -4,140 +4,106 @@
 
 # Gabriel Rance
 
-### AI Engineer building production systems at the intersection of
-### LLM infrastructure, product, and real users.
+**AI engineer who deploys LLM systems inside real companies.**
+I sit with the customer, find the workflow worth automating, and ship the agent, the integrations and the evals behind it.
 
-**OpenAI Hackathon Finalist**
+**OpenAI Codex Hackathon finalist** · ENSAM engineer · ex construction-site manager
 
-[Portfolio](https://iamgabriel.xyz) ·
 [LinkedIn](https://linkedin.com/in/gabriel-rance-ensam) ·
-[Email](mailto:gabriel.rance@ensam.eu)
+[Email](mailto:gabriel.rance@ensam.eu) ·
+[Portfolio](https://iamgabriel.xyz)
 
 </div>
 
 ---
 
-## At a glance
+| **Finalist** | **600k+** | **2,000+** | **10+** |
+|:---:|:---:|:---:|:---:|
+| OpenAI Codex Hackathon | production queries behind my LLM routing work | users on the agent platform I build at Wonka AI | MCP servers built for customer stacks |
 
-| 86k+ | 1,000+ | Finalist |
-|:---:|:---:|:---:|
-| production queries studied | users reached at Wonka | OpenAI Hackathon |
-| LLM routing research | shipped AI products | built under pressure |
+## Flagship work
 
-<div align="center">
+### [Fredo / Bond-OpenAI](https://github.com/Caezarr/Bond-OpenAI) · OpenAI Codex Hackathon finalist
 
-<img src="./contributions.svg" width="620" alt="GitHub contributions during the last 365 days" />
+**Give a coding agent a safe, real-world action: placing a phone call.**
 
-</div>
+One Codex prompt becomes a real, consented outbound call, and the structured result returns to the same task.
+The interesting part is the action contract, not the demo: classify, clarify, preview, explicit confirmation,
+verified caller ID, strict destination allowlist, 180-second cap, idempotency keys.
 
-## In production
+`MCP` · `Codex plugin` · `Twilio` · `Deepgram Voice Agent` · `Python`
 
-### Wonka AI
+### [QueryRouter++](https://github.com/Caezarr/queryrouter-plus-plus) · LLM routing research
 
-**Customer-facing AI products and integrations used by 1,000+ people.**
+**Pick the right model per query instead of one default model for everything.**
 
-I work across product, engineering, and deployment: building integrations,
-agent infrastructure, and features shaped directly by customer workflows.
-
-`TypeScript` · `Python` · `MCP` · `LLM infrastructure`
-
-## Selected work
-
-### MDK Peinture
-
-**Client landing page for a professional painter in the Lille metro area.**
-
-Production site showcasing services, portfolio, and contact integration for a
-local painting contractor. Built with modern TypeScript stack for performance
-and conversion.
-
-`Next.js` · `TypeScript` · `SEO` · `Client work`
-
-### [Orbis](https://github.com/Caezarr/orbis)
-
-**Install work into your company — bounded missions on *your* stack.**
-
-Turn a repeating job into a supervised mission: test the deliverable, check
-sources and unknowns, then activate under your control. Vertical landing pages
-for hosts, creators, coaches, and more.
-
-`Next.js` · `TypeScript` · `SEO` · `CRO`
-
-### Agent Call
-
-**A self-hosted voice-agent appliance for outbound sales teams.**
-
-Sales reps manage fleets of AI callers that qualify leads, update the CRM,
-and improve from each campaign. Every operator owns their SIP trunk, models,
-data, and costs instead of depending on a shared calling platform.
-
-`Bun` · `React` · `MCP` · `Pipecat` · `LiveKit SIP` · `Postgres`
-
-### [Kanten](https://kanten.io)
-
-**Turn niche research into ready-to-shoot video scripts.**
-
-Creator tooling that bridges research and production: identify trending topics,
-generate structured scripts, and prepare video content optimized for engagement.
-Built for creators who need repeatable workflows from insight to publish.
-
-`TypeScript` · `Next.js` · `fal` · `Creator tooling`
-
-### [QueryRouter++](https://github.com/Caezarr/queryrouter-plus-plus)
-
-**Multi-objective routing for production LLM systems.**
-
-Routes each query according to performance, cost, latency, and environmental
-impact instead of relying on a single default model.
-
-Developed from my ENSAM engineering thesis and validated against
-**86k+ production queries**.
+Formal compatibility score `C(q, m, w) = Σ wᵢ · Aᵢ(q, m)` across performance, cost, latency and CO₂,
+with user preferences as weights on a simplex. Weights shift toward performance when tools are active
+(web search, code exec, MCP). Started as my ENSAM thesis on 86k production queries, now **600k+**.
 
 `Python` · `FastAPI` · `LLM evaluation` · `multi-objective optimization`
 
-### [Fredo / Bond-OpenAI](https://github.com/Caezarr/Bond-OpenAI)
+### [Orbis](https://github.com/Caezarr/orbis) · agent harness
 
-**OpenAI Hackathon finalist — safe phone actions for software agents.**
+**A harness that makes a business task safe to hand to an agent: declared, tested, gated, replayable.**
 
-A local MCP lets Codex and other compatible agents turn a task into a real,
-consented phone call. Classification, preview, confirmation, strict allowlists,
-and structured results are part of the action contract.
+Each capability is a versioned contract, not a prompt:
 
-`Python` · `MCP` · `Twilio` · `Deepgram Voice Agent`
+```yaml
+role: quote_preparer
+objective: produce_reviewable_quote
+context: [company_profile, approved_catalog, customer_request]
+tools: [read_docs, calculate, draft_document]
+must: [cite_sources, expose_assumptions, use_integer_money_math]
+cannot: [send_email, change_price_catalog]
+```
 
-## More builds
+Around it: eval datasets and quality gates before activation, tenant- and ACL-scoped retrieval,
+memory that only changes with human approval, idempotent external actions, budget reserved per run,
+red-team tests. Questions it is built to answer: *why did the agent produce this, can we replay it,
+can we swap the model provider without rewriting the capability?*
 
-| Project | What it explores |
+`TypeScript` · `evals` · `agent memory` · `scoped retrieval` · `red-teaming`
+
+### [Kanten](https://kanten.io) · live product
+
+**Content intelligence for creators: what is working in your niche, turned into a script you can shoot.**
+
+Tracks creators, flags posts that outperform their author's median, analyses hooks and structure,
+then writes scripts in the user's own style. Ships with its own MCP server, so the whole product
+is drivable from Claude.
+
+`TypeScript` · `Next.js` · `MCP` · `video analysis` · `LLM pipelines`
+
+## Forward-deployed at Wonka AI
+
+Wonka builds AI agents for European SMBs. I'm Country Manager for France and I still write the code:
+I run the customer from first call to production deployment, so the gap between a model and a
+customer's systems is my job end to end.
+
+- **Integrations into customer stacks.** MCP servers for accounting and ERP APIs (OAuth2, 75-endpoint catalog generated from the API spec), CRM, Microsoft 365 via Graph, on-prem systems over NTLM.
+- **Model platform.** Multi-provider routing across OpenAI, Anthropic, Mistral and Google, under zero-data-retention and no-training constraints.
+- **Customer deployments.** Support-ticket routing for an energy provider built from 68k historical tickets (mined rules + LLM, running in production); email triage and ERP automation for industrial and service companies.
+- **Product.** In-chat agent builder, connector OAuth flows, usage analytics and billing, shaped by what customers hit in the field.
+
+`TypeScript` · `Python` · `MCP` · `OAuth` · `n8n` · `Azure DevOps`
+
+## Agent tooling
+
+| Project | What it does |
 |---|---|
-| **[wonka-audit](https://github.com/Caezarr/wonka-audit)** | Local AI usage audit CLI for Claude Code, Codex, Cursor and Git — track usage, costs, and patterns across your dev tools. |
-| **[Bowimi MCP](https://github.com/Caezarr/bowimi-mcp)** | MCP server for Bowimi field sales CRM — connect Claude to routes, locations, contacts, orders and operational workflows. |
-| **agent-secrets** (private) | Store MCP server credentials in macOS Keychain — scan configs for plain-text secrets, migrate them to the keychain, and rewrite configs to reference them. |
-| **break-coach** (private) | Take verified breaks during long Claude tasks — suggests pauses when Claude works, verifies you left the screen, learns what you do, and tracks progression. |
-| **[Mirror](https://caezarr.github.io/mirror-site/)** | Local-first macOS workflow assistant that recognizes repeated work and prepares reviewable automation drafts without collecting screenshots, keystrokes, or page content. |
-| **signal-studio** (private) | Signal processing and observability tooling for production systems. |
-| **sillon** (private) | Operational cockpit for barbershops — appointments, clients, retention (coiffeurs-only positioning). |
-| **focusweekly** (private) | Weekly focus planning and execution framework. |
-| **goji-hiring-mvp** (private) | Hiring workflow MVP for candidate pipeline management. |
-| **[Boring · `Chiant`](https://github.com/Caezarr/Chiant)** | Computer-vision parking assistant combining control-vehicle detection, geofencing, and programmatic parking payment. |
-| **[Gauntlet](https://github.com/Caezarr/gauntlet)** | Parallel AI-agent harness for evidence-backed QA, code review, security audits, and implementation loops. |
-| **[Vulcan](https://github.com/Caezarr/Vulcan)** | Feature-shipping cockpit — agents, skills, and templates to turn specs into shipped product. |
-| **[Forge](https://github.com/Caezarr/forge)** | Local-first Life OS for morning execution, habits, training, focus, and personal progression. |
-| **[Career OS](https://github.com/Caezarr/career-ops)** | Native Mac workspace for application tracking, CV tailoring, interview preparation, and a live copilot. |
+| **[Gauntlet](https://github.com/Caezarr/gauntlet)** | Parallel agent harness on Claude Code: QA, review and security audits with evidence (logs, HTTP bodies, traces) and a validator gate before any fix lands. |
+| **[wonka-audit](https://github.com/Caezarr/wonka-audit)** | `npx` CLI that measures how teams actually use Claude Code, Codex and Cursor, local-first and privacy-safe. Used before and after AI enablement workshops. |
+| **[Bowimi MCP](https://github.com/Caezarr/bowimi-mcp)** | MCP server connecting Claude to a field-sales CRM: routes, locations, contacts, orders. |
+| **agent-secrets** | Moves plaintext secrets out of Codex, Claude Code, Claude Desktop and Cursor configs into the macOS Keychain. |
+| **[Vulcan](https://github.com/Caezarr/Vulcan)** | Agents, skills and templates to go from spec to shipped feature. |
 
-See the full portfolio at **[iamgabriel.xyz](https://iamgabriel.xyz)**.
+## Why I work this way
 
-## What I care about
+Before software I spent ten years on construction sites, from Compagnons du Devoir apprentice to running
+projects above €10M. That is where I learned the FDE job: understand how the work is really done,
+earn the trust of the people doing it, then ship something they actually use.
 
-- LLM routing and evaluation;
-- agent infrastructure that remains observable in production;
-- integrations grounded in real operational workflows;
-- working directly with users to turn vague needs into deployed systems.
-
-## Current direction
-
-Growing toward **Forward Deployed Engineering**: deep enough in the stack to
-build the system, close enough to users to know which system should be built.
-
-## Community
-
-See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [SUPPORT.md](SUPPORT.md) for contribution guidelines and how to reach out.
+- I start from the workflow and the data, not the model.
+- I ship evals and guardrails with the feature, not after.
+- I prefer a small V1 in production over a large demo.

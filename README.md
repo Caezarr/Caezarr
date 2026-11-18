@@ -9,11 +9,6 @@ I sit with the customer, find the workflow worth automating, and ship the agent,
 
 **OpenAI Codex Hackathon finalist** · ENSAM engineer · ex construction-site manager
 
-[![OpenAI Codex Hackathon: finalist](https://img.shields.io/badge/OpenAI_Codex_Hackathon-finalist-412991)](https://github.com/Caezarr/Bond-OpenAI)
-[![npm: wonka-audit](https://img.shields.io/npm/v/wonka-audit?label=npm%20wonka-audit)](https://www.npmjs.com/package/wonka-audit)
-[![MCP servers: 10+](https://img.shields.io/badge/MCP_servers-10+-000000)](#forward-deployed-at-wonka-ai)
-[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://github.com/Caezarr/queryrouter-plus-plus)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://github.com/Caezarr/orbis)
 
 [LinkedIn](https://linkedin.com/in/gabriel-rance-ensam) ·
 [Email](mailto:gabriel.rance@ensam.eu) ·

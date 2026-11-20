@@ -102,6 +102,27 @@ customer's systems is my job end to end.
 | **[Bowimi MCP](https://github.com/Caezarr/bowimi-mcp)** | MCP server connecting Claude to a field-sales CRM: routes, locations, contacts, orders. |
 | **[Vulcan](https://github.com/Caezarr/Vulcan)** | Agents, skills and templates to go from spec to shipped feature. |
 
+## Open source
+
+Bugs I hit while running these libraries in production, fixed upstream. Each PR comes with
+a failing test first and a before/after reproduction.
+
+**Merged**
+
+| Project | Fix |
+|---|---|
+| [livekit/agents#8663](https://github.com/livekit/agents/pull/8663) | Anthropic plugin over-reported `completion_tokens` on every request: `message_delta` usage is cumulative, it was being added instead of replaced. Server-tool input tokens were also dropped. |
+| [livekit/agents#8644](https://github.com/livekit/agents/pull/8644) | Mistral STT ignored `conn_options.timeout` on batch `recognize()` and fell back to the SDK's 5-minute default. |
+| [livekit/agents#8647](https://github.com/livekit/agents/pull/8647) | ElevenLabs STT posted batch `recognize()` without a request timeout, same 5-minute hang. |
+
+**In review**
+
+| Project | Fix |
+|---|---|
+| [LibreChat#18426](https://github.com/LibreChat-AI/LibreChat/pull/18426) | Agent context budget reserved 0 output tokens for GPT-5+ models (limit moved into nested `modelKwargs`), so summarization kicked in too late and requests could exceed the context window. |
+| [simonw/llm#1908](https://github.com/simonw/llm/pull/1908) | `llm schemas dsl` crashed with a traceback on invalid input instead of a CLI error. |
+| [simonw/llm-mistral#47](https://github.com/simonw/llm-mistral/pull/47) | Plugin always sent `temperature=0.7` and `top_p=1`, overriding Mistral's per-model default temperature. |
+
 ## Why I work this way
 
 Before software I spent ten years on construction sites, from Compagnons du Devoir apprentice to running
